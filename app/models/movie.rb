@@ -3,11 +3,11 @@ class Movie < ActiveRecord::Base
     ['G','PG','PG-13','R']
   end
 
-  def with_ratings(ratings)
-   if not ratings.nil? 
-     Movie.where("rating IN (?)", ratings)
-   else
-     Movie.all
+  def self.with_ratings(ratings)
+   if ratings.nil? or ratings.empty? 
+     Movie.all 
+   else 
+     Movie.where("rating IN (?)", ratings)   
    end 
   end  
 end
