@@ -7,9 +7,10 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @all_ratings = ['G', 'PG']#Movie.all_ratings
-    @ratings_to_show = ['G']
-    @movies = Movie.all
+    ratings = params[:ratings].keys
+    @all_ratings = Movie.all_ratings
+    @ratings_to_show = ratings
+    @movies = Movie.with_ratings(ratings)
   end
 
   def new
