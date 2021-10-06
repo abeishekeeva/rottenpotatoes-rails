@@ -11,12 +11,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     @ratings_to_show = ratings
     @sort_parameter = params[:sort_parameter] 
-    @ratings_hash = Hash[ratings.collect { |item| [item, "1"] } ]
-    #if params[:sort_title].present? 	
-    #  @sort_parameter = params[:sort_title]  
-    #elsif params[:sort_date].present?
-    #  @sort_parameter = params[:sort_date]
-    #end 
+    @hashed_ratings = Hash[ratings.collect { |item| [item, "1"] } ] 
  
     @movies = Movie.with_ratings(ratings)
     if not @sort_parameter.nil?
